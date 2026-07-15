@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicare Solutions | Quality Health Starts With Quality Supplies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F4F1;
+    --surface:#FFFFFF;
+    --ink:#132E29;
+    --ink-soft:#3D5852;
+    --teal:#1B7A6E;
+    --teal-dark:#0F4F47;
+    --amber:#C4863A;
+    --red:#B4453A;
+    --line:#CBD6CF;
+    --line-soft:#DEE6E0;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,244,241,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:34px; height:34px; flex:none;
+    border:2px solid var(--teal-dark);
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    background:var(--teal);
+  }
+  .brand-mark::before, .brand-mark::after{
+    content:''; position:absolute; background:#fff;
+  }
+  .brand-mark::before{ width:16px; height:3px; }
+  .brand-mark::after{ width:3px; height:16px; }
+  .brand-text{font-family:var(--font-display); font-weight:700; font-size:18px; letter-spacing:0.2px;}
+  .brand-sub{font-family:var(--font-mono); font-size:10px; letter-spacing:1.5px; color:var(--ink-soft); text-transform:uppercase;}
+  nav.links{display:flex; gap:28px; align-items:center;}
+  nav.links a{
+    font-size:14px; font-weight:500; text-decoration:none; color:var(--ink-soft);
+    transition:color .15s ease;
+  }
+  nav.links a:hover{color:var(--teal-dark);}
+  .btn-admin{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.5px;
+    border:1px solid var(--ink); background:transparent; color:var(--ink);
+    padding:8px 14px; border-radius:5px; cursor:pointer;
+    transition:all .15s ease;
+  }
+  .btn-admin:hover{background:var(--ink); color:#fff;}
+  .mobile-toggle{display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--ink);}
+  .mobile-menu{
+    display:none; flex-direction:column; padding:6px 24px 16px; border-top:1px solid var(--line);
+  }
+  .mobile-menu a{
+    padding:12px 4px; font-size:15px; font-weight:500; text-decoration:none; color:var(--ink);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .mobile-menu.open{display:flex;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 24px 48px; position:relative;}
+  .hero-inner{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--teal-dark); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:24px; height:1px; background:var(--teal-dark);}
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(34px, 5.2vw, 58px); line-height:1.04; letter-spacing:-0.5px;
+    color:var(--ink);
+  }
+  .hero h1 span{color:var(--teal-dark);}
+  .slogan{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:19px; color:var(--teal-dark); margin-top:18px;
+  }
+  .hero p.desc{margin-top:16px; max-width:46ch; color:var(--ink-soft); font-size:15.5px;}
+  .hero-cta{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; font-size:14.5px; text-decoration:none; cursor:pointer;
+    padding:13px 22px; border-radius:6px; border:1px solid transparent;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--teal-dark); color:#fff;}
+  .btn-primary:hover{box-shadow:0 6px 18px rgba(15,79,71,0.28);}
+  .btn-outline{border-color:var(--ink); color:var(--ink); background:transparent;}
+  .btn-outline:hover{background:var(--ink); color:#fff;}
+
+  /* requisition ticket signature graphic */
+  .ticket{
+    background:var(--surface);
+    border:1.5px solid var(--ink);
+    border-radius:4px;
+    padding:26px 26px 22px;
+    position:relative;
+    transform:rotate(-2deg);
+    box-shadow:8px 10px 0 rgba(19,46,41,0.08);
+  }
+  .ticket::before{
+    content:'';
+    position:absolute; left:0; right:0; top:56px;
+    border-top:1px dashed var(--line);
+  }
+  .ticket-row{display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.5px;}
+  .ticket-title{
+    font-family:var(--font-display); font-weight:700; font-size:22px; margin:16px 0 10px;
+    color:var(--ink);
+  }
+  .ticket-list{list-style:none; font-size:13.5px; color:var(--ink-soft); display:flex; flex-direction:column; gap:6px;}
+  .ticket-list li{display:flex; justify-content:space-between; border-bottom:1px dotted var(--line-soft); padding-bottom:6px;}
+  .ticket-list li b{color:var(--ink); font-weight:600;}
+  .stamp{
+    position:absolute; top:-14px; right:-10px;
+    border:2.5px solid var(--red); color:var(--red);
+    font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:1.5px;
+    padding:6px 10px; border-radius:6px; transform:rotate(9deg);
+    background:rgba(241,244,241,0.9);
+  }
+
+  /* ---------- Controls / catalog ---------- */
+  section{padding:56px 24px;}
+  .section-head{max-width:1180px; margin:0 auto 28px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+  .section-head h2{font-family:var(--font-display); font-size:28px; font-weight:700;}
+  .section-head p{color:var(--ink-soft); font-size:14.5px; max-width:52ch; margin-top:6px;}
+  .tag{font-family:var(--font-mono); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-dark);}
+
+  .controls{
+    max-width:1180px; margin:0 auto 26px;
+    display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+  }
+  .search-box{
+    flex:1 1 240px; position:relative;
+  }
+  .search-box input{
+    width:100%; padding:12px 16px 12px 38px; border:1px solid var(--line); border-radius:6px;
+    background:var(--surface); font-size:14px; font-family:var(--font-body);
+  }
+  .search-box input:focus{outline:2px solid var(--teal); outline-offset:1px;}
+  .search-box::before{
+    content:'⌕'; position:absolute; left:13px; top:50%; transform:translateY(-50%);
+    color:var(--ink-soft); font-size:16px;
+  }
+  .chips{display:flex; gap:8px; flex-wrap:wrap;}
+  .chip{
+    font-family:var(--font-mono); font-size:12px; padding:9px 14px; border-radius:20px;
+    border:1px solid var(--line); background:var(--surface); cursor:pointer; color:var(--ink-soft);
+    transition:all .12s ease;
+  }
+  .chip.active{background:var(--teal-dark); border-color:var(--teal-dark); color:#fff;}
+
+  .grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px;
+  }
+
+  /* product tag card - signature element */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    position:relative;
+    padding:20px 18px 18px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card::before{
+    content:'';
+    position:absolute; top:0; left:16px; right:16px; height:0;
+    border-top:1.5px dashed var(--line);
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(19,46,41,0.08);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;}
+  .sku{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.5px;}
+  .cat-pill{
+    font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1px;
+    background:var(--bg); border:1px solid var(--line); padding:3px 8px; border-radius:12px; color:var(--teal-dark);
+    white-space:nowrap;
+  }
+  .icon-wrap{
+    width:100%; height:140px; border-radius:5px; margin-bottom:14px; overflow:hidden;
+    background:linear-gradient(135deg, #EAF1EE, #F6F8F6);
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-soft);
+  }
+  .icon-wrap svg{width:34px; height:34px; stroke:var(--teal-dark); fill:none; stroke-width:1.6;}
+  .card h3{font-family:var(--font-display); font-size:16.5px; font-weight:600; line-height:1.25; margin-bottom:4px;}
+  .unit-note{font-size:12px; color:var(--ink-soft); margin-bottom:12px;}
+  .price-row{display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-top:1px dotted var(--line-soft); border-bottom:1px dotted var(--line-soft); margin-bottom:14px;}
+  .price-col{display:flex; flex-direction:column; gap:1px;}
+  .price-label{font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:var(--ink-soft);}
+  .price-val{font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--ink);}
+  .price-val.retail{color:var(--ink);}
+  .price-val.wholesale{color:var(--teal-dark);}
+  .wholesale-min{font-size:10px; color:var(--ink-soft);}
+  .stock-flag{font-size:11px; font-weight:600; margin-bottom:12px; display:inline-flex; align-items:center; gap:5px;}
+  .stock-flag.in{color:var(--teal-dark);}
+  .stock-flag.out{color:var(--red);}
+  .stock-flag::before{content:''; width:6px; height:6px; border-radius:50%; background:currentColor;}
+  .order-controls{display:flex; gap:8px; align-items:center; margin-bottom:10px;}
+  .order-controls select, .order-controls input[type=number]{
+    border:1px solid var(--line); border-radius:5px; padding:8px 8px; font-size:13px; font-family:var(--font-body);
+    background:var(--bg);
+  }
+  .order-controls select{flex:1;}
+  .order-controls input[type=number]{width:64px;}
+  .btn-order{
+    width:100%; background:#25D366; color:#fff; border:none; border-radius:6px; padding:11px; font-weight:600; font-size:13.5px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:filter .12s ease;
+  }
+  .btn-order:hover{filter:brightness(0.94);}
+  .btn-order:disabled{background:var(--line); cursor:not-allowed;}
+  .btn-order svg{width:16px; height:16px; fill:#fff;}
+
+  /* ---------- Wholesale banner ---------- */
+  .wholesale-banner{
+    max-width:1180px; margin:0 auto; background:var(--teal-dark); color:#fff;
+    border-radius:10px; padding:34px 32px; display:grid; grid-template-columns:1.3fr 1fr; gap:28px; align-items:center;
+  }
+  .wholesale-banner h3{font-family:var(--font-display); font-size:23px; margin-bottom:10px;}
+  .wholesale-banner p{color:#D6E7E3; font-size:14.5px; max-width:48ch;}
+  .wholesale-steps{display:flex; flex-direction:column; gap:12px;}
+  .wholesale-steps div{
+    display:flex; gap:12px; align-items:flex-start; font-size:13.5px; color:#EAF3F1;
+    border-left:2px solid rgba(255,255,255,0.35); padding-left:12px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .contact-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:26px;
+  }
+  .contact-card h4{font-family:var(--font-display); font-size:16px; margin-bottom:6px;}
+  .contact-card p{color:var(--ink-soft); font-size:13.5px; margin-bottom:16px;}
+  .contact-methods{display:flex; flex-direction:column; gap:10px;}
+  .contact-methods a{
+    display:flex; align-items:center; gap:10px; font-size:14px; font-weight:500;
+    padding:10px 12px; border:1px solid var(--line); border-radius:6px; text-decoration:none;
+    transition:border-color .12s ease;
+  }
+  .contact-methods a:hover{border-color:var(--teal-dark);}
+
+  /* ---------- Admin ---------- */
+  #adminPanel{display:none; background:#0F221E; color:#EAF3F1;}
+  #adminPanel .section-head h2, #adminPanel .tag{color:#fff;}
+  #adminPanel .section-head p{color:#B7CBC5;}
+  .admin-toolbar{max-width:1180px; margin:0 auto 18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between; align-items:center;}
+  .admin-table-wrap{max-width:1180px; margin:0 auto; overflow-x:auto; border:1px solid #274A43; border-radius:8px;}
+  table.admin-table{width:100%; border-collapse:collapse; background:#0F221E; font-size:13px;}
+  table.admin-table th{
+    font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:1px;
+    text-align:left; padding:12px 14px; background:#123A33; color:#9FC4BC; border-bottom:1px solid #274A43;
+  }
+  table.admin-table td{padding:10px 14px; border-bottom:1px solid #1B3A34; vertical-align:middle;}
+  table.admin-table input, table.admin-table select{
+    background:#0B1917; border:1px solid #2A4C45; color:#EAF3F1; padding:6px 8px; border-radius:4px; font-size:12.5px; width:100%;
+  }
+  .row-actions{display:flex; gap:6px;}
+  .btn-mini{
+    font-family:var(--font-mono); font-size:11px; padding:6px 10px; border-radius:4px; border:1px solid #2A4C45;
+    background:transparent; color:#EAF3F1; cursor:pointer;
+  }
+  .btn-mini.save{border-color:var(--teal); color:var(--teal);}
+  .btn-mini.delete{border-color:var(--red); color:#E58A80;}
+  .btn-mini:hover{background:rgba(255,255,255,0.06);}
+  .add-item-form{
+    max-width:1180px; margin:22px auto 0; background:#123A33; border:1px solid #274A43; border-radius:8px; padding:20px;
+    display:grid; grid-template-columns:repeat(6,1fr); gap:10px; align-items:end;
+  }
+  .add-item-form label{font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:#9FC4BC; display:block; margin-bottom:4px;}
+  .add-item-form input, .add-item-form select{
+    width:100%; background:#0B1917; border:1px solid #2A4C45; color:#EAF3F1; padding:9px 8px; border-radius:5px; font-size:12.5px;
+  }
+  .add-item-form .full{grid-column:1/-1;}
+  .add-item-form button{
+    grid-column:span 2; background:var(--teal); border:none; color:#04211C; font-weight:700; padding:10px; border-radius:5px; cursor:pointer;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line); padding:30px 24px; text-align:center;}
+  footer p{font-size:12.5px; color:var(--ink-soft);}
+  footer .brand-text{font-size:15px;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .mobile-toggle{display:block;}
+    .hero-inner{grid-template-columns:1fr;}
+    .ticket{transform:none; margin-top:20px;}
+    .wholesale-banner{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .add-item-form{grid-template-columns:1fr 1fr;}
+    .add-item-form button{grid-column:1/-1;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="brand-text">Medicare Solutions</div>
+        <div class="brand-sub">Kampala, Uganda</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#catalog">Catalog</a>
+      <a href="#wholesale">Wholesale</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="btn-admin" id="adminToggleBtn">Staff Login</button>
+      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#catalog">Catalog</a>
+    <a href="#wholesale">Wholesale</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Medical &amp; Hospital Supplies</div>
+      <h1>Quality health starts <span>with quality supplies.</span></h1>
+      <div class="slogan">— Medicare Solutions</div>
+      <p class="desc">Browse examination gloves, wound care, injection supplies and diagnostic consumables. Order a single pack for your clinic or a full wholesale consignment for your hospital — straight to WhatsApp, no account needed.</p>
+      <div class="hero-cta">
+        <a href="#catalog" class="btn btn-primary">Browse the catalog</a>
+        <a href="#wholesale" class="btn btn-outline">Wholesale pricing</a>
+      </div>
+    </div>
+    <div class="ticket">
+      <div class="stamp">IN STOCK</div>
+      <div class="ticket-row"><span>Order Ticket</span><span>MC-000</span></div>
+      <div class="ticket-title">Sample Requisition</div>
+      <ul class="ticket-list">
+        <li><span>Examination gloves (box)</span><b>x10</b></li>
+        <li><span>3-ply face masks (box)</span><b>x20</b></li>
+        <li><span>Gauze rolls &amp; pads</span><b>x15</b></li>
+      </ul>
+      <div class="ticket-row" style="margin-top:14px;"><span>Fulfilled via</span><span>WhatsApp order</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CATALOG ---------- -->
+<section id="catalog">
+  <div class="section-head">
+    <div>
+      <div class="tag">Full Catalog</div>
+      <h2>Items in stock</h2>
+      <p>Every item is sold per unit for individual buyers, and at a discounted rate for hospitals ordering in bulk.</p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search items, e.g. gloves, syringes, gauze...">
+    </div>
+    <div class="chips" id="categoryChips"></div>
+  </div>
+
+  <div class="grid" id="catalogGrid"></div>
+</section>
+
+<!-- ---------- WHOLESALE ---------- -->
+<section id="wholesale">
+  <div class="wholesale-banner">
+    <div>
+      <h3>Ordering for a hospital, clinic or pharmacy?</h3>
+      <p>Every item on this site unlocks a wholesale price once you order past its bulk threshold — shown right on the item card. For large or recurring hospital orders, message us directly and we'll prepare a custom quotation and delivery schedule.</p>
+      <a href="#" class="btn btn-primary" id="wholesaleWhatsappBtn" style="margin-top:18px; background:#fff; color:var(--teal-dark);">Request a wholesale quote</a>
+    </div>
+    <div class="wholesale-steps">
+      <div><b>1.</b>&nbsp; Pick your items and switch the order type to "Wholesale"</div>
+      <div><b>2.</b>&nbsp; Send the pre-filled order on WhatsApp</div>
+      <div><b>3.</b>&nbsp; We confirm stock, price and delivery within the day</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CONTACT ---------- -->
+<section id="contact">
+  <div class="section-head">
+    <div>
+      <div class="tag">Get In Touch</div>
+      <h2>Contact Medicare Solutions</h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h4>Order directly</h4>
+      <p>Fastest way to order — message us with the items and quantities you need.</p>
+      <div class="contact-methods">
+        <a href="#" id="contactWhatsapp" target="_blank">💬&nbsp; WhatsApp — tap to chat</a>
+        <a href="tel:+256709197935">📞&nbsp; Call / SMS — +256 709 197 935</a>
+        <a href="mailto:orders@medicaresolutions.ug">✉️&nbsp; orders@medicaresolutions.ug</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h4>Visit or deliver to</h4>
+      <p>Serving hospitals, clinics and pharmacies across Kampala and beyond.</p>
+      <div class="contact-methods">
+        <a href="#">📍&nbsp; Kampala, Uganda — address on request</a>
+        <a href="#">🕐&nbsp; Mon – Sat, 8:00 AM – 6:00 PM</a>
+        <a href="#">🚚&nbsp; Delivery arranged after order confirmation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ADMIN ---------- -->
+<section id="adminPanel">
+  <div class="section-head">
+    <div>
+      <div class="tag">Staff Only</div>
+      <h2>Manage items</h2>
+      <p>Add new items, edit prices, or remove items. Changes appear on the site immediately.</p>
+    </div>
+    <button class="btn-admin" id="adminLogoutBtn" style="border-color:#EAF3F1; color:#EAF3F1;">Log out</button>
+  </div>
+
+  <div class="admin-toolbar">
+    <span style="font-family:var(--font-mono); font-size:12px; color:#9FC4BC;">SIGNED IN AS STAFF</span>
+    <button class="btn-mini save" id="resetDefaultsBtn">Reset to default 14 items</button>
+  </div>
+
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Image</th><th>SKU</th><th>Name</th><th>Category</th><th>Unit</th><th>Retail (UGX)</th><th>Wholesale (UGX)</th><th>Wholesale min qty</th><th>In stock</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+  </div>
+
+  <form class="add-item-form" id="addItemForm">
+    <div class="full" style="font-family:var(--font-mono); font-size:11px; color:#9FC4BC; letter-spacing:1px; text-transform:uppercase;">Add new item</div>
+    <div><label>Name</label><input type="text" id="newName" required placeholder="e.g. Digital thermometers"></div>
+    <div><label>Category</label><input type="text" id="newCategory" required placeholder="e.g. Diagnostics"></div>
+    <div><label>Unit</label><input type="text" id="newUnit" required placeholder="e.g. box of 20"></div>
+    <div><label>Retail price (UGX)</label><input type="number" id="newRetail" required min="0"></div>
+    <div><label>Wholesale price (UGX)</label><input type="number" id="newWholesale" required min="0"></div>
+    <div><label>Wholesale min qty</label><input type="number" id="newMinQty" required min="1" value="10"></div>
+    <div><label>Photo (optional)</label><input type="file" id="newImage" accept="image/*"></div>
+    <button type="submit">Add item</button>
+  </form>
+</section>
+
+<footer>
+  <div class="brand-text">Medicare Solutions</div>
+  <p style="margin-top:6px;">Quality health starts with quality supplies. © <span id="year"></span> Medicare Solutions, Kampala.</p>
+</footer>
+
+<script>
+/* ============ CONFIG ============ */
+// Change this to the real WhatsApp number, digits only, country code first, no + or spaces.
+const WHATSAPP_NUMBER = "256709197935";
+const ADMIN_PASSWORD = "medicare2026";
+const STORAGE_KEY = "medicare_items_v1";
+
+/* ============ DEFAULT CATALOG (from the supply list) ============ */
+const DEFAULT_ITEMS = [
+  { id:1,  sku:"MC-001", name:"Examination gloves (latex, nitrile, vinyl)", category:"PPE",        unit:"box of 100", retail:25000, wholesale:20000, minQty:10, inStock:true, image:"" },
+  { id:2,  sku:"MC-002", name:"Surgical gloves (non-sterile only)",         category:"PPE",        unit:"box of 50",  retail:35000, wholesale:28000, minQty:10, inStock:true, image:"" },
+  { id:3,  sku:"MC-003", name:"Face masks (3-ply, KN95)",                   category:"PPE",        unit:"box of 50",  retail:15000, wholesale:12000, minQty:10, inStock:true, image:"" },
+  { id:4,  sku:"MC-004", name:"Disposable aprons and gowns",                category:"PPE",        unit:"pack of 10", retail:40000, wholesale:32000, minQty:5,  inStock:true, image:"" },
+  { id:5,  sku:"MC-005", name:"Cotton wool rolls",                          category:"Wound Care", unit:"500g roll",  retail:12000, wholesale:9500,  minQty:10, inStock:true, image:"" },
+  { id:6,  sku:"MC-006", name:"Gauze rolls and pads",                       category:"Wound Care", unit:"pack of 12", retail:8000,  wholesale:6500,  minQty:10, inStock:true, image:"" },
+  { id:7,  sku:"MC-007", name:"Bandages (crepe, conforming, elastic)",      category:"Wound Care", unit:"pack of 10", retail:10000, wholesale:8000,  minQty:10, inStock:true, image:"" },
+  { id:8,  sku:"MC-008", name:"Plasters and adhesive tapes",                category:"Wound Care", unit:"pack of 20", retail:6000,  wholesale:4800,  minQty:10, inStock:true, image:"" },
+  { id:9,  sku:"MC-009", name:"Alcohol swabs and wipes",                    category:"Wound Care", unit:"box of 100", retail:9000,  wholesale:7200,  minQty:10, inStock:true, image:"" },
+  { id:10, sku:"MC-010", name:"Syringes (without medication)",              category:"Injection & IV", unit:"box of 100", retail:30000, wholesale:24000, minQty:5, inStock:true, image:"" },
+  { id:11, sku:"MC-011", name:"Needles (dry, unused, sealed)",              category:"Injection & IV", unit:"box of 100", retail:18000, wholesale:14500, minQty:5, inStock:true, image:"" },
+  { id:12, sku:"MC-012", name:"IV giving sets (empty, non-drug)",           category:"Injection & IV", unit:"pack of 10", retail:45000, wholesale:36000, minQty:5, inStock:true, image:"" },
+  { id:13, sku:"MC-013", name:"Urine bags and catheters (unmedicated)",     category:"Diagnostics & Collection", unit:"pack of 10", retail:55000, wholesale:44000, minQty:5, inStock:true, image:"" },
+  { id:14, sku:"MC-014", name:"Specimen cups and collection containers",    category:"Diagnostics & Collection", unit:"pack of 50", retail:20000, wholesale:16000, minQty:5, inStock:true, image:"" },
+];
+
+const ICONS = {
+  "PPE": `<svg viewBox="0 0 24 24"><path d="M7 3v6a5 5 0 0 0 10 0V3"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>`,
+  "Wound Care": `<svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="6" rx="2"/><path d="M9 9v6M15 9v6"/></svg>`,
+  "Injection & IV": `<svg viewBox="0 0 24 24"><path d="M19 5 5 19M15 2l7 7-3 3-7-7 3-3zM7 13l4 4-3 3-4-4 3-3z"/></svg>`,
+  "Diagnostics & Collection": `<svg viewBox="0 0 24 24"><path d="M9 2v6l-5 9a3 3 0 0 0 3 4h10a3 3 0 0 0 3-4l-5-9V2"/><path d="M9 2h6"/></svg>`,
+  "default": `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>`
+};
+
+/* ============ STATE ============ */
+let items = [];
+let activeCategory = "All";
+let searchTerm = "";
+let isAdmin = false;
+
+/* ============ STORAGE ============ */
+function loadItems(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(raw){
+    try { items = JSON.parse(raw); return; } catch(e){ /* fall through to default */ }
+  }
+  items = JSON.parse(JSON.stringify(DEFAULT_ITEMS));
+  saveItems();
+}
+function saveItems(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
+/* ============ HELPERS ============ */
+function fmt(n){ return "UGX " + Number(n).toLocaleString("en-UG"); }
+function waLink(number, message){ return `https://wa.me/${number}?text=${encodeURIComponent(message)}`; }
+
+/* ============ CATALOG RENDER ============ */
+function getCategories(){
+  const set = new Set(items.map(i => i.category));
+  return ["All", ...Array.from(set)];
+}
+
+function renderChips(){
+  const wrap = document.getElementById("categoryChips");
+  wrap.innerHTML = "";
+  getCategories().forEach(cat => {
+    const chip = document.createElement("button");
+    chip.className = "chip" + (cat === activeCategory ? " active" : "");
+    chip.textContent = cat;
+    chip.onclick = () => { activeCategory = cat; renderChips(); renderCatalog(); };
+    wrap.appendChild(chip);
+  });
+}
+
+function renderCatalog(){
+  const grid = document.getElementById("catalogGrid");
+  grid.innerHTML = "";
+  const filtered = items.filter(i => {
+    const matchCat = activeCategory === "All" || i.category === activeCategory;
+    const matchSearch = i.name.toLowerCase().includes(searchTerm.toLowerCase()) || i.category.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
+  if(filtered.length === 0){
+    grid.innerHTML = `<p style="color:var(--ink-soft); grid-column:1/-1;">No items match your search. Try a different keyword or category.</p>`;
+    return;
+  }
+
+  filtered.forEach(item => {
+    const icon = ICONS[item.category] || ICONS.default;
+    const media = item.image
+      ? `<img src="${item.image}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover; border-radius:5px;">`
+      : icon;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="sku">${item.sku}</span>
+        <span class="cat-pill">${item.category}</span>
+      </div>
+      <div class="icon-wrap">${media}</div>
+      <h3>${item.name}</h3>
+      <div class="unit-note">Sold per ${item.unit}</div>
+      <div class="price-row">
+        <div class="price-col">
+          <span class="price-label">Retail</span>
+          <span class="price-val retail">${fmt(item.retail)}</span>
+        </div>
+        <div class="price-col" style="text-align:right;">
+          <span class="price-label">Wholesale (${item.minQty}+)</span>
+          <span class="price-val wholesale">${fmt(item.wholesale)}</span>
+        </div>
+      </div>
+      <div class="stock-flag ${item.inStock ? "in" : "out"}">${item.inStock ? "In stock" : "Currently unavailable"}</div>
+      <div class="order-controls">
+        <select class="order-type">
+          <option value="retail">Retail</option>
+          <option value="wholesale">Wholesale</option>
+        </select>
+        <input type="number" class="order-qty" min="1" value="1">
+      </div>
+      <button class="btn-order" ${item.inStock ? "" : "disabled"}>
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2z"/></svg>
+        Order via WhatsApp
+      </button>
+    `;
+
+    const orderBtn = card.querySelector(".btn-order");
+    const typeSelect = card.querySelector(".order-type");
+    const qtyInput = card.querySelector(".order-qty");
+
+    orderBtn.addEventListener("click", () => {
+      const type = typeSelect.value;
+      let qty = parseInt(qtyInput.value, 10) || 1;
+      if(type === "wholesale" && qty < item.minQty){
+        qty = item.minQty;
+        qtyInput.value = qty;
+      }
+      const price = type === "wholesale" ? item.wholesale : item.retail;
+      const total = price * qty;
+      const message = `Hello Medicare Solutions, I'd like to order:\n\n` +
+        `Item: ${item.name} (${item.sku})\n` +
+        `Unit: ${item.unit}\n` +
+        `Order type: ${type === "wholesale" ? "Wholesale" : "Retail"}\n` +
+        `Quantity: ${qty}\n` +
+        `Estimated total: ${fmt(total)}\n\n` +
+        `Please confirm availability and delivery.`;
+      window.open(waLink(WHATSAPP_NUMBER, message), "_blank");
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+/* ============ SEARCH ============ */
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  searchTerm = e.target.value;
+  renderCatalog();
+});
+
+/* ============ CONTACT / WHOLESALE LINKS ============ */
+function setupStaticWhatsappLinks(){
+  document.getElementById("contactWhatsapp").href =
+    waLink(WHATSAPP_NUMBER, "Hello Medicare Solutions, I'd like to place an order.");
+  document.getElementById("wholesaleWhatsappBtn").href =
+    waLink(WHATSAPP_NUMBER, "Hello Medicare Solutions, I'm ordering for a hospital/clinic and would like a wholesale quotation.");
+}
+
+/* ============ ADMIN ============ */
+const adminPanel = document.getElementById("adminPanel");
+const adminToggleBtn = document.getElementById("adminToggleBtn");
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
+
+adminToggleBtn.addEventListener("click", () => {
+  if(isAdmin){
+    adminPanel.scrollIntoView({ behavior:"smooth" });
+    return;
+  }
+  const pass = prompt("Enter staff password to manage items:");
+  if(pass === ADMIN_PASSWORD){
+    isAdmin = true;
+    adminPanel.style.display = "block";
+    renderAdminTable();
+    adminPanel.scrollIntoView({ behavior:"smooth" });
+  } else if(pass !== null){
+    alert("Incorrect password.");
+  }
+});
+
+adminLogoutBtn.addEventListener("click", () => {
+  isAdmin = false;
+  adminPanel.style.display = "none";
+  window.scrollTo({ top:0, behavior:"smooth" });
+});
+
+function renderAdminTable(){
+  const body = document.getElementById("adminTableBody");
+  body.innerHTML = "";
+  items.forEach(item => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <img class="thumb-preview" src="${item.image || ''}" style="width:36px; height:36px; object-fit:cover; border-radius:4px; background:#0B1917; ${item.image ? '' : 'display:none;'}">
+          <input type="file" accept="image/*" class="image-upload" style="max-width:110px; padding:4px;">
+        </div>
+      </td>
+      <td><input type="text" value="${item.sku}" data-field="sku"></td>
+      <td><input type="text" value="${item.name}" data-field="name" style="min-width:180px;"></td>
+      <td><input type="text" value="${item.category}" data-field="category"></td>
+      <td><input type="text" value="${item.unit}" data-field="unit"></td>
+      <td><input type="number" value="${item.retail}" data-field="retail"></td>
+      <td><input type="number" value="${item.wholesale}" data-field="wholesale"></td>
+      <td><input type="number" value="${item.minQty}" data-field="minQty"></td>
+      <td>
+        <select data-field="inStock">
+          <option value="true" ${item.inStock ? "selected" : ""}>Yes</option>
+          <option value="false" ${!item.inStock ? "selected" : ""}>No</option>
+        </select>
+      </td>
+      <td class="row-actions">
+        <button class="btn-mini save">Save</button>
+        <button class="btn-mini delete">Delete</button>
+      </td>
+    `;
+
+    tr.querySelector(".image-upload").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if(!file) return;
+      if(file.size > 800 * 1024){
+        alert("Please choose an image under 800KB so the catalog stays fast to load. Try a compressed JPG.");
+        e.target.value = "";
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        item.image = evt.target.result;
+        saveItems();
+        const preview = tr.querySelector(".thumb-preview");
+        preview.src = item.image;
+        preview.style.display = "block";
+        renderCatalog();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    tr.querySelector(".save").addEventListener("click", () => {
+      const inputs = tr.querySelectorAll("[data-field]");
+      inputs.forEach(inp => {
+        const field = inp.dataset.field;
+        let value = inp.value;
+        if(["retail","wholesale","minQty"].includes(field)) value = Number(value);
+        if(field === "inStock") value = value === "true";
+        item[field] = value;
+      });
+      saveItems();
+      renderChips();
+      renderCatalog();
+      tr.style.background = "rgba(27,122,110,0.15)";
+      setTimeout(() => tr.style.background = "", 500);
+    });
+
+    tr.querySelector(".delete").addEventListener("click", () => {
+      if(confirm(`Delete "${item.name}"? This can't be undone.`)){
+        items = items.filter(i => i.id !== item.id);
+        saveItems();
+        renderAdminTable();
+        renderChips();
+        renderCatalog();
+      }
+    });
+
+    body.appendChild(tr);
+  });
+}
+
+document.getElementById("addItemForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const nextId = items.length ? Math.max(...items.map(i => i.id)) + 1 : 1;
+  const nextSku = "MC-" + String(nextId).padStart(3, "0");
+  const newItem = {
+    id: nextId,
+    sku: nextSku,
+    name: document.getElementById("newName").value.trim(),
+    category: document.getElementById("newCategory").value.trim(),
+    unit: document.getElementById("newUnit").value.trim(),
+    retail: Number(document.getElementById("newRetail").value),
+    wholesale: Number(document.getElementById("newWholesale").value),
+    minQty: Number(document.getElementById("newMinQty").value),
+    inStock: true,
+    image: ""
+  };
+
+  const fileInput = document.getElementById("newImage");
+  const file = fileInput.files[0];
+
+  function finishAdd(){
+    items.push(newItem);
+    saveItems();
+    renderAdminTable();
+    renderChips();
+    renderCatalog();
+    e.target.reset();
+    document.getElementById("newMinQty").value = 10;
+  }
+
+  if(file){
+    if(file.size > 800 * 1024){
+      alert("Please choose an image under 800KB so the catalog stays fast to load. Try a compressed JPG.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      newItem.image = evt.target.result;
+      finishAdd();
+    };
+    reader.readAsDataURL(file);
+  } else {
+    finishAdd();
+  }
+});
+
+document.getElementById("resetDefaultsBtn").addEventListener("click", () => {
+  if(confirm("Reset the catalog to the original 14 items? Any edits or added items will be lost.")){
+    items = JSON.parse(JSON.stringify(DEFAULT_ITEMS));
+    saveItems();
+    renderAdminTable();
+    renderChips();
+    renderCatalog();
+  }
+});
+
+/* ============ MOBILE MENU ============ */
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("open");
+  mobileMenuBtn.textContent = mobileMenu.classList.contains("open") ? "✕" : "☰";
+});
+mobileMenu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    mobileMenuBtn.textContent = "☰";
+  });
+});
+
+/* ============ INIT ============ */
+document.getElementById("year").textContent = new Date().getFullYear();
+loadItems();
+renderChips();
+renderCatalog();
+setupStaticWhatsappLinks();
+</script>
+</body>
+</html>
